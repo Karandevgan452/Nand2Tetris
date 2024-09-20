@@ -4,18 +4,31 @@
 // File name: Projects/2/ALU.hdl
 
 
+// ALU.hdl
 CHIP ALU {
+    IN a[16], b[16], zx, nx, zy, ny, f, no; // Control bits
+    OUT out[16], zr, ng; // Output and status flags
 
-    IN  // 16-bit inputs:
-        x[16], y[16],
-        
+    PARTS:
+    // Compute A
+    Mux(a, 0, zx, aM); // Zero a if zx is 1
+    Not(aM, aN);       // Invert aM if nx is 1
+    Mux(aN, aM, nx, aF);
 
-    OUT // 16-bit output
-        out[16],
+    // Compute B
+    Mux(b, 0, zy, bM); // Zero b if zy is 1
+    Not(bM, bN);       // Invert bM if ny is 1
+    Mux(bN, bM, ny, bF);
 
-        // ALU output flags
-        zr, // 1 if out=0, 0 otherwise
-        ng; // 1 if out<0, 0 otherwise
+    // ALU operations
+    Add(aF, bF, sum, carry); // Compute a + b
+    Mux(sum, aF, f, out);    // Select between sum and aF based on f
+
+    // Set zr and ng flags
+    Or(out, out, outR);       // Check if out is 0 for zr
+    Not(outR, zr);            // If out is 0, zr is 0
+    And(out[15], out[15], ng); // Set ng if MSB is 1
+}
 
 
 }
