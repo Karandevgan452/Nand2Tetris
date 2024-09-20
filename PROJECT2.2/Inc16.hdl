@@ -5,7 +5,7 @@
 // by Nisan and Schocken, MIT Press.
 // File name: Nand2Tetris/Project2.2/Inc16.hdl
 
->>>>>>> 128ff74bd0057799ed364b7d5a23881c450afe54
+
 CHIP Inc16 {
     IN in[16];
     OUT out[16];
