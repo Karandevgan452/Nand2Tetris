@@ -1,5 +1,7 @@
-// File name: Nand2Tetris/Project2.2/ALU.hdl
-// ALU.hdL
+
+
+//// File name: Nand2Tetris/Project2.2/ALU.hdl
+// ALU.hdl
 CHIP ALU {
     IN a[16], b[16], zx, nx, zy, ny, f, no; // Control bits
     OUT out[16], zr, ng; // Output and status flags
@@ -23,8 +25,4 @@ CHIP ALU {
     Or(out, out, outR);       // Check if out is 0 for zr
     Not(outR, zr);            // If out is 0, zr is 0
     And(out[15], out[15], ng); // Set ng if MSB is 1
-
-    
-
-
 }
