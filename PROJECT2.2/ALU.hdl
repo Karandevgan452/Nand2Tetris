@@ -1,13 +1,5 @@
-<<<<<<< HEAD
-=======
-// This file is part of www.nand2tetris.org
-// and the book "The Elements of Computing Systems"
-// by Nisan and Schocken, MIT Press.
-// File name: Nand2Tetris/Project2.2/2/ALU.hdl
-
-
->>>>>>> 128ff74bd0057799ed364b7d5a23881c450afe54
-// ALU.hdl
+// File name: Nand2Tetris/Project2.2/ALU.hdl
+// ALU.hdL
 CHIP ALU {
     IN a[16], b[16], zx, nx, zy, ny, f, no; // Control bits
     OUT out[16], zr, ng; // Output and status flags
@@ -22,7 +14,6 @@ CHIP ALU {
     Mux(b, 0, zy, bM); // Zero b if zy is 1
     Not(bM, bN);       // Invert bM if ny is 1
     Mux(bN, bM, ny, bF);
-<<<<<<< HEAD
 
     // ALU operations
     Add(aF, bF, sum, carry); // Compute a + b
@@ -32,18 +23,8 @@ CHIP ALU {
     Or(out, out, outR);       // Check if out is 0 for zr
     Not(outR, zr);            // If out is 0, zr is 0
     And(out[15], out[15], ng); // Set ng if MSB is 1
-=======
 
-    // ALU operations
-    Add(aF, bF, sum, carry); // Compute a + b
-    Mux(sum, aF, f, out);    // Select between sum and aF based on f
-
-    // Set zr and ng flags
-    Or(out, out, outR);       // Check if out is 0 for zr
-    Not(outR, zr);            // If out is 0, zr is 0
-    And(out[15], out[15], ng); // Set ng if MSB is 1
-}
+    
 
 
->>>>>>> 128ff74bd0057799ed364b7d5a23881c450afe54
 }
